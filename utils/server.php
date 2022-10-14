@@ -18,12 +18,19 @@ if (isset($_POST['login-button'])) {
             $fetch_ID = $fetch['userID'];
             $fetch_email = $fetch['username'];
             $fetch_password = $fetch['password'];
+            $fetch_role = $fetch['role'];
 
             if ($fetch_password !== $password) {
                 $errors['password'] = "Incorrect Password.";
             } else {
                 $_SESSION['ID'] = $fetch_ID;
-                header('Location: ../student/dashboard.php');
+                if ($fetch_role == "student") {
+                    header('Location: ../student/dashboard.php');
+                } elseif ($fetch_role == "admin") {
+                    header('Location: ../admin/dashboard.php');
+                } elseif ($fetch_role == "faculty") {
+                    header('Location: ../faculty/dashboard.php');
+                }
             }
         }
     } else {
