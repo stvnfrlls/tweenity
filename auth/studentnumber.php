@@ -1,9 +1,7 @@
 <?php
 require_once("../utils/server.php");
-if (!$_SESSION['student_num']) {
-    header('Location: studentnumber.php');
-}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,12 +15,11 @@ if (!$_SESSION['student_num']) {
 <body>
     <h1>REGISTER PAGE</h1>
     <a href="../index.php">Home</a>
-
+    2022-00011-SP
     <form method="post" action="<?php $_SERVER["PHP_SELF"] ?>">
-        <p><?php echo $_SESSION['student_num'] ?></p>
-        <input type="text" name="usersEmail" placeholder="Email Address">
-        <input type="password" name="usersPwd" placeholder="Password">
-        <button type="submit" name="register-button">Register</button>
+        <h1>Enter Student Number</h1>
+        <input type="text" name="studentNumber" placeholder="Student Number">
+        <input type="submit" name="verifyStudentNumber"></input>
     </form>
 </body>
 

@@ -1,3 +1,7 @@
+<?php 
+require_once("../utils/server.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,35 +14,7 @@
 
 <body>
     <h1>LOGIN PAGE</h1>
-    <a href="../index.php">Home</a>
-    <?php
-    if (count($errors) == 1) {
-    ?>
-    <div class="alert alert-danger text-center">
-        <?php
-            foreach ($errors as $showerror) {
-                echo $showerror;
-            }
-            ?>
-    </div>
-    <?php
-    } elseif (count($errors) > 1) {
-    ?>
-    <div class="alert alert-danger">
-        <?php
-            foreach ($errors as $showerror) {
-            ?>
-        <li>
-            <?php echo $showerror; ?>
-        </li>
-        <?php
-            }
-            ?>
-    </div>
-    <?php
-    }
-    ?>
-    <form method="post" action="<?php $_SERVER[" PHP_SELF"] ?>">
+    <form method="post" action="<?php $_SERVER["PHP_SELF"] ?>">
         <input type="hidden" name="type" value="login">
         <input type="text" name="usersEmail" placeholder="Email Address">
         <input type="password" name="usersPwd" placeholder="Password">

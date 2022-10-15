@@ -11,7 +11,7 @@
 <body>
     <h1>INDEX PAGE</h1>
     <a href="auth/login.php">Login</a>
-    <a href="auth/signup.php">Register</a>
+    <a href="auth/studentnumber.php">Register</a>
 </body>
 
 </html>

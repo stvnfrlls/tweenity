@@ -38,7 +38,25 @@ if (isset($_POST['login-button'])) {
     }
 }
 
-if (isset($_POST['signup-button'])) {
+if (isset($_POST['verifyStudentNumber'])) {
+    $studentNumber = $_POST['studentNumber'];
+
+    $check_studentNumber = "SELECT * FROM studentrecord WHERE SR_number = '$studentNumber'";
+    $result = $mysqli->query($check_studentNumber);
+
+    if ($result) {
+        if ($result->num_rows == 1) {
+            $data = $result->fetch_assoc();
+            $sr_num = $data['SR_number'];
+            $_SESSION['student_num'] = $sr_num;
+            header('Location: signup.php');
+        } else {
+            echo "error" . $mysqli->error;
+        }
+    }
+}
+
+if (isset($_POST['register-button'])) {
     $email = $mysqli->real_escape_string($_POST['usersEmail']);
     $password  = $mysqli->real_escape_string($_POST['usersPwd']);
 
@@ -46,11 +64,16 @@ if (isset($_POST['signup-button'])) {
     $result = $mysqli->query($check_email);
 
     if ($result->num_rows === 0) {
-        $signup = "INSERT INTO userdetails (user_name, password) VALUES('$email', '$password')";
+        $studentNumber = $_SESSION['student_num'];
+        $signup = "UPDATE student (user_name, password) VALUES('$email', '$password') WHERE SR_number = '$studentNum'";
         $result = $mysqli->query($signup);
 
         if ($result) {
-            header('Location: auth/login.php');
+            if ($result->affected_rows >= 0) {
+                header('Location: auth/login.php');
+            } else {
+                $errors['unknown'] = "Error inputting Data";
+            }
         } else {
             $errors['unknown'] = "Error inputting Data";
         }
