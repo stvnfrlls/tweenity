@@ -4,8 +4,9 @@
     $result = $mysqli->query($get_userID);
     $count = $result->fetch_assoc();
     $studentCounter = $count["COUNT(userID)"] + 1;
+    $format_StudentCounter = sprintf("%05d", $studentCounter);
     $year = date("Y");
-    $studentNumber = $year."-".$studentCounter."-SP";
+    $studentNumber = $year."-".$format_StudentCounter."-SP";
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +23,7 @@
     <h1>Add Student</h1>
     <a href="../index.php">Home</a>
 
-    <form action="<?php $_SERVER[" PHP_SELF"] ?>" method="post">
+    <form action="<?php $_SERVER["PHP_SELF"] ?>" method="post">
         <div class="container">
             <h1>STUDENT INFORMATION</h1>
             <div class="row">
@@ -42,6 +43,8 @@
                 <input type="number" name="SR_age" id="SR_age">
                 <label for="SR_birthday">Birthday</label>
                 <input type="date" name="SR_birthday" id="SR_birthday">
+                <label for="SR_gender">Gender</label>
+                <input type="text" name="SR_gender" id="SR_gender">
             </div>
             <div class="row">
                 <label for="SR_address">Address</label>
@@ -59,14 +62,8 @@
                 <label for="SR_section">Section</label>
                 <input type="text" name="SR_section" id="SR_section">
             </div>
-            <div class="row">
-                <label for="SR_age">Age</label>
-                <input type="number" name="SR_age" id="SR_age">
-                <label for="SR_birthday">Birthday</label>
-                <input type="date" name="SR_birthday" id="SR_birthday">
-            </div>
         </div>
-        <input type="submit" value="Register Student">
+        <input type="submit" name="regStudent" id="regStudent" value="Register Student">
     </form>
 </body>
 

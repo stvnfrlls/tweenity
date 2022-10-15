@@ -113,3 +113,35 @@ if (isset($_POST['present'])) {
     }
 }
 
+if (isset($_POST['regStudent'])) {
+    $SR_number    = $mysqli->real_escape_string($_POST['SR_number']);
+
+    $SR_fname = $mysqli->real_escape_string($_POST['SR_fname']);
+    $SR_mname    = $mysqli->real_escape_string($_POST['SR_mname']);
+    $SR_lname = $mysqli->real_escape_string($_POST['SR_lname']);
+    $SR_gender = $mysqli->real_escape_string($_POST['SR_gender']);
+
+    $SR_age    = $mysqli->real_escape_string($_POST['SR_age']);
+    $SR_birthday = $mysqli->real_escape_string($_POST['SR_birthday']);
+
+    $SR_address    = $mysqli->real_escape_string($_POST['SR_address']);
+    $SR_guardian = $mysqli->real_escape_string($_POST['SR_guardian']);
+    $SR_contact    = $mysqli->real_escape_string($_POST['SR_contact']);
+
+    $SR_grade = $mysqli->real_escape_string($_POST['SR_grade']);
+    $SR_section    = $mysqli->real_escape_string($_POST['SR_section']);
+
+    $regStudent = "INSERT INTO studentrecord(SR_number, SR_fname, SR_mname, SR_lname, SR_gender, 
+                    SR_age, SR_birthday, SR_grade, SR_section, SR_address, SR_guardian, SR_contact)
+                    VALUES('$SR_number', '$SR_fname', '$SR_mname', '$SR_lname', '$SR_gender', 
+                     '$SR_age', '$SR_birthday', '$SR_grade', '$SR_section', '$SR_address',
+                     '$SR_guardian', '$SR_contact'
+                    )";
+    $result = $mysqli->query($regStudent);
+
+    if ($result) {
+        header('Location: ../admin/addStudent.php');
+    } else {
+        echo "error" . $mysqli->error;
+    }
+}
